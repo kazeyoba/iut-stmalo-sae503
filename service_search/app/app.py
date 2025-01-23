@@ -21,6 +21,15 @@ swagger = Swagger(app)
 # Connexion à Redis
 redis_client = Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, decode_responses=True)
 
+def require_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_key = request.headers.get("Authorization")
+        if not auth_key or auth_key != ADMIN_KEY:
+            return jsonify({"error": "Unauthorized"}), 401
+        return f(*args, **kwargs)
+    return decorated
+
 # Endpoint: Service de recherche
 @app.route('/search', methods=['GET'])
 @require_auth
@@ -61,3 +70,6 @@ def require_auth(f):
             return jsonify({"error": "Unauthorized"}), 401
         return f(*args, **kwargs)
     return decorated
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=APP_PORT)

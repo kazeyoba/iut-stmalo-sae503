@@ -30,6 +30,15 @@ def require_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+def require_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth_key = request.headers.get("Authorization")
+        if not auth_key or auth_key != ADMIN_KEY:
+            return jsonify({"error": "Unauthorized"}), 401
+        return f(*args, **kwargs)
+    return decorated
+
 # Chargement initial des données
 if not redis_client.exists("users"):
     if os.path.exists(CSV_FILE_USERS):
@@ -98,3 +107,6 @@ def add_user():
     redis_client.hset(f"users:{user_id}", mapping={"id": user_id,"name": name, "password": password})
     redis_client.sadd("users",f"users:{user_id}")
     return jsonify({"message": "Utilisateur ajouté"}), 201
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=APP_PORT)

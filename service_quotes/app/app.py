@@ -117,3 +117,6 @@ def delete_quote(quote_id):
 
     redis_client.hdel(f"quotes:{quote_id}","quote")
     return jsonify({"message": "Citation supprimée"}), 200
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=APP_PORT)

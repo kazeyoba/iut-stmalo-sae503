@@ -1,0 +1,64 @@
+name: haddock-api
+
+services:
+  api-quotes:
+    build:
+      context: ./service_quotes
+      dockerfile: Dockerfile
+
+    image: harbor.kaze-cloud.fr/public/service-quotes:0.1
+
+    ports:
+      - 5001:5000
+
+    environment:
+      - REDIS_HOST=redis
+
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./service_quotes/app
+          target: /app
+
+  api-search:
+    build:
+      context: ./service_search
+      dockerfile: Dockerfile
+
+    image: harbor.kaze-cloud.fr/public/service-search:0.1
+
+    ports:
+      - 5000:5000
+
+    environment:
+      - REDIS_HOST=redis
+
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./service_search/app
+          target: /app
+
+  api-users:
+    build:
+      context: ./service_users
+      dockerfile: Dockerfile
+
+    image: harbor.kaze-cloud.fr/public/api-users:0.1
+
+    ports:
+      - 5002:5000
+
+    environment:
+      - REDIS_HOST=redis
+
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./service_users/app
+          target: /app
+
+  redis:
+    image: 'bitnami/redis:7.4.2'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
