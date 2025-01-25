@@ -5,7 +5,7 @@ resources:
 - ../../base/api-search
 - ../../base/api-users
 - ../../base/redis
-namePrefix: dev-
+- api-ingress.yaml
 commonLabels:
   environment: development
 images:
