@@ -13,6 +13,8 @@ images:
   newTag: "0.1"
 - name: harbor.kaze-cloud.fr/public/service-search
   newTag: "0.1"
+- name: harbor.kaze-cloud.fr/public/api-users
+  newTag: "0.1"
 - name: bitnami/redis:latest
   newTag: "7.4.2"
 patches:
