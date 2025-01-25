@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-search
+  namespace: haddock-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-search
+  template:
+    metadata:
+      labels:
+        app: api-search
+    spec:
+      containers:
+      - name: api-search
+        image: harbor.kaze-cloud.fr/public/service-search:latest
+        env:
+        - name: REDIS_HOST
+          value: redis
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

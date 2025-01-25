@@ -1,0 +1,46 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base/api-quotes
+- ../../base/api-search
+- ../../base/api-users
+- ../../base/redis
+namePrefix: dev-
+commonLabels:
+  environment: development
+images:
+- name: harbor.kaze-cloud.fr/public/service-quotes
+  newTag: "0.1"
+- name: harbor.kaze-cloud.fr/public/service-search
+  newTag: "0.1"
+- name: bitnami/redis:latest
+  newTag: "7.4.2"
+patches:
+- target:
+    kind: Deployment
+    name: api-quotes
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+- target:
+    kind: Deployment
+    name: api-search
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 2
+- target:
+    kind: Deployment
+    name: api-users
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 1
+- target:
+    kind: Deployment
+    name: redis
+  patch: |-
+    - op: replace
+      path: /spec/replicas
+      value: 1

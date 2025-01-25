@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-quotes
+  namespace: haddock-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-quotes
+  template:
+    metadata:
+      labels:
+        app: api-quotes
+    spec:
+      containers:
+      - name: api-quotes
+        image: harbor.kaze-cloud.fr/public/service-quotes:latest
+        env:
+        - name: REDIS_HOST
+          value: redis
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-users
+  namespace: haddock-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-users
+  template:
+    metadata:
+      labels:
+        app: api-users
+    spec:
+      containers:
+      - name: api-users
+        image: harbor.kaze-cloud.fr/public/api-users:latest
+        env:
+        - name: REDIS_HOST
+          value: redis
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
