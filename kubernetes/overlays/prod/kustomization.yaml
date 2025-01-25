@@ -5,7 +5,9 @@ resources:
 - ../../base/api-search
 - ../../base/api-users
 - ../../base/redis
-namePrefix: prod-
+- api-quotes-ingress.yaml
+- api-search-ingress.yaml
+- api-users-ingress.yaml
 commonLabels:
   environment: production
 images:

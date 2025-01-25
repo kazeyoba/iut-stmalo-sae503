@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-quotes-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.rule: "Host(`sae503-dev.kaze-cloud.fr`) && PathPrefix(`/quotes`)"
+spec:
+  rules:
+  - host: sae503-dev.kaze-cloud.fr
+    http:
+      paths:
+      - path: /search
+        pathType: Prefix
+        backend:
+          service:
+            name: api-search
+            port:
+              number: 5000
