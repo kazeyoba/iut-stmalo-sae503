@@ -4,7 +4,7 @@ metadata:
   name: api-quotes-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/router.rule: "Host(`sae503-dev.kaze-cloud.fr`) && PathPrefix(`/quotes`)"
+    traefik.ingress.kubernetes.io/router.rule: "Host(`sae503-prod.kaze-cloud.fr`) && PathPrefix(`/quotes`)"
 spec:
   rules:
   - host: sae503-prod.kaze-cloud.fr
