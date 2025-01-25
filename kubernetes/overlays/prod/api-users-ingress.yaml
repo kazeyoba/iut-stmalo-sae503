@@ -4,7 +4,7 @@ metadata:
   name: api-search-ingress
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: web
-    traefik.ingress.kubernetes.io/router.rule: "Host(`sae503-prod.kaze-cloud.fr`) && PathPrefix(`/search`)"
+    traefik.ingress.kubernetes.io/router.rule: "Host(`sae503-prod.kaze-cloud.fr`) && PathPrefix(`/users`)"
 spec:
   rules:
   - host: sae503-prod.kaze-cloud.fr
@@ -14,6 +14,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: api-search
+            name: api-users
             port:
               number: 5000
