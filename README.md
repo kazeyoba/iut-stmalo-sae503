@@ -10,6 +10,18 @@ docker compose build
 docker compose watch
 ```
 
+## BUILD/
+
+Dossier pour build le projet
+
+## haddock-api/
+
+Template HELM
+
+## kubernetes/
+
+Template Kubernetes avec Kustomize
+
 ## Basic AUTH
 
 ```bash
