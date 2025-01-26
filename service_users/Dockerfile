@@ -1,12 +1,18 @@
-FROM python:3.11.11-bookworm
+FROM python:3.11.11-alpine3.20
 
-COPY requirements.txt /requirements.txt
+ENV PATH="/home/haddok/.local/bin:${PATH}"
 
-RUN pip install -r /requirements.txt
+RUN adduser -D haddok
 
-COPY app /app
+USER haddok
 
-WORKDIR /app
+WORKDIR /home/worker
+
+COPY --chown=haddok:haddok requirements.txt requirements.txt
+
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+COPY --chown=haddok:haddok app .
 
 EXPOSE 5000
 

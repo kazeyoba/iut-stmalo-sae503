@@ -11,13 +11,13 @@ commonLabels:
   environment: production
 images:
 - name: harbor.kaze-cloud.fr/public/service-quotes
-  newTag: "0.2"
+  newTag: "0.3"
 - name: harbor.kaze-cloud.fr/public/service-search
-  newTag: "0.2"
+  newTag: "0.3"
 - name: harbor.kaze-cloud.fr/public/api-users
-  newTag: "0.2"
+  newTag: "0.3"
 - name: harbor.kaze-cloud.fr/public/api-users
-  newTag: "0.2"
+  newTag: "0.3"
 - name: bitnami/redis:latest
   newTag: "7.4.2"
 patches:

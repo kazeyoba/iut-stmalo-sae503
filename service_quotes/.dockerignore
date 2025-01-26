@@ -1,0 +1,41 @@
+# Ignorer l'environnement virtuel
+.venv/
+app/.venv/
+
+# Fichiers générés par Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+app/__pycache__/
+
+# Fichiers de log
+*.log
+*.out
+*.err
+
+# Fichiers de configuration et de dépendances locaux
+.env
+*.env
+*.env.*
+
+# Fichiers d'éditeurs ou d'IDE
+.vscode/
+.idea/
+*.swp
+
+# Répertoires de tests locaux
+tests/
+*.pytest_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+
+# Répertoires de build Python
+build/
+dist/
+*.egg-info/
+app/build/
+app/dist/
+app/*.egg-info/
