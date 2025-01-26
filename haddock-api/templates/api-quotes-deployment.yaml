@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-quotes
+  labels:
+    app: api-quotes
+    environment: {{ .Values.global.environment }}
+spec:
+  replicas: {{ .Values.microservices.api-quotes.replicas }}
+  selector:
+    matchLabels:
+      app: api-quotes
+  template:
+    metadata:
+      labels:
+        app: api-quotes
+        environment: {{ .Values.global.environment }}
+    spec:
+      containers:
+      - name: api-quotes
+        image: {{ .Values.microservices.api-quotes.image }}
+        ports:
+        - containerPort: {{ .Values.microservices.api-quotes.port }}
+        env:
+        - name: ENVIRONMENT
+          value: {{ .Values.global.environment }}
+        - name: REDIS_HOST
+          value: {{ .Values.redis.host }}
+        - name: REDIS_PORT
+          value: {{ .Values.redis.port }}
+        - name: APP_PORT
+          value: {{ .Values.microservices.api-quotes.port }}
+        resources:
+          limits:
+            cpu: {{ .Values.microservices.api-quotes.resources.limits.cpu }}
+            memory: {{ .Values.microservices.api-quotes.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.microservices.api-quotes.resources.requests.cpu }}
+            memory: {{ .Values.microservices.api-quotes.resources.requests.memory }}

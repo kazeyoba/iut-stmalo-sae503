@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-users
+  labels:
+    app: api-users
+    environment: {{ .Values.global.environment }}
+spec:
+  selector:
+    app: api-users
+  ports:
+  - protocol: TCP
+    port: {{ .Values.microservices.api-users.port }}
+    targetPort: {{ .Values.microservices.api-users.port }}

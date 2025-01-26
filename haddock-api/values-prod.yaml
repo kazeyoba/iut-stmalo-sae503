@@ -1,0 +1,62 @@
+global:
+  environment: production
+
+microservices:
+  api-quotes:
+    image: harbor.kaze-cloud.fr/public/api-quotes:0.4
+    replicas: 2
+    resources:
+      limits:
+        cpu: "1"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "256Mi"
+    path: /quotes
+    port: 5000
+  api-search:
+    image: harbor.kaze-cloud.fr/public/api-search:0.4
+    replicas: 2
+    resources:
+      limits:
+        cpu: "1"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "256Mi"
+    path: /search
+    port: 5000
+  api-users:
+    image: harbor.kaze-cloud.fr/public/api-users:0.4
+    replicas: 2
+    resources:
+      limits:
+        cpu: "1"
+        memory: "1024Mi"
+      requests:
+        cpu: "500m"
+        memory: "256Mi"
+    path: /users
+    port: 5000
+
+redis:
+  host: redis
+  port: "6379"
+  replicas: 1
+  image: bitnami/redis:0.4
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "250m"
+    limits:
+      memory: "1024Mi"
+      cpu: "500m"
+  service:
+    type: ClusterIP
+  pvc:
+    accessMode: ReadWriteOnce
+    storage: 5Gi
+
+ingress:
+  enabled: true
+  host: sae503-prod.kaze-cloud.fr

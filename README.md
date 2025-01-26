@@ -15,3 +15,7 @@ docker compose watch
 ```bash
 curl -X GET http://localhost:5002/users -H "Authorization: Basic $(echo -n 'Alice:inWonderland' | base64)"
 ```
+
+```bash
+curl -X GET https://sae503-prod.kaze-cloud.fr/quotes -H "Authorization: Basic $(echo -n 'Alice:inWonderland' | base64)"
+```

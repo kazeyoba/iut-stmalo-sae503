@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-search
+  labels:
+    app: api-search
+    environment: {{ .Values.global.environment }}
+spec:
+  replicas: {{ .Values.microservices.api-search.replicas }}
+  selector:
+    matchLabels:
+      app: api-search
+  template:
+    metadata:
+      labels:
+        app: api-search
+        environment: {{ .Values.global.environment }}
+    spec:
+      containers:
+      - name: api-search
+        image: {{ .Values.microservices.api-search.image }}
+        ports:
+        - containerPort: {{ .Values.microservices.api-search.port }}
+        env:
+        - name: ENVIRONMENT
+          value: {{ .Values.global.environment }}
+        - name: REDIS_HOST
+          value: {{ .Values.redis.host }}
+        - name: REDIS_PORT
+          value: {{ .Values.redis.port }}
+        - name: APP_PORT
+          value: {{ .Values.microservices.api-search.port }}
+        resources:
+          limits:
+            cpu: {{ .Values.microservices.api-search.resources.limits.cpu }}
+            memory: {{ .Values.microservices.api-search.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.microservices.api-search.resources.requests.cpu }}
+            memory: {{ .Values.microservices.api-search.resources.requests.memory }}

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+    environment: {{ .Values.global.environment }}
+spec:
+  replicas: {{ .Values.redis.replicas }}
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: {{ .Values.redis.image }}
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        resources:
+          requests:
+            memory: "{{ .Values.redis.resources.requests.memory }}"
+            cpu: "{{ .Values.redis.resources.requests.cpu }}"
+          limits:
+            memory: "{{ .Values.redis.resources.limits.memory }}"
+            cpu: "{{ .Values.redis.resources.limits.cpu }}"
+        volumeMounts:
+        - mountPath: /bitnami/redis/data
+          name: redis-storage
+      volumes:
+      - name: redis-storage
+        persistentVolumeClaim:
+          claimName: redis-pvc

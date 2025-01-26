@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-users
+  labels:
+    app: api-users
+    environment: {{ .Values.global.environment }}
+spec:
+  replicas: {{ .Values.microservices.api-users.replicas }}
+  selector:
+    matchLabels:
+      app: api-users
+  template:
+    metadata:
+      labels:
+        app: api-users
+        environment: {{ .Values.global.environment }}
+    spec:
+      containers:
+      - name: api-users
+        image: {{ .Values.microservices.api-users.image }}
+        ports:
+        - containerPort: {{ .Values.microservices.api-users.port }}
+        env:
+        - name: ENVIRONMENT
+          value: {{ .Values.global.environment }}
+        - name: REDIS_HOST
+          value: {{ .Values.redis.host }}
+        - name: REDIS_PORT
+          value: {{ .Values.redis.port }}
+        - name: APP_PORT
+          value: {{ .Values.microservices.api-users.port }}
+        resources:
+          limits:
+            cpu: {{ .Values.microservices.api-users.resources.limits.cpu }}
+            memory: {{ .Values.microservices.api-users.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.microservices.api-users.resources.requests.cpu }}
+            memory: {{ .Values.microservices.api-users.resources.requests.memory }}
