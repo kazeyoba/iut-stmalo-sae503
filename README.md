@@ -9,3 +9,9 @@ Application Python de gestion des citations du capitaine Haddock, utilisée dans
 docker compose build
 docker compose watch
 ```
+
+## Basic AUTH
+
+```bash
+curl -X GET http://localhost:5002/users -H "Authorization: Basic $(echo -n 'Alice:inWonderland' | base64)"
+```
