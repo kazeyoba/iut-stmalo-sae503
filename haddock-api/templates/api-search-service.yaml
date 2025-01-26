@@ -10,5 +10,5 @@ spec:
     app: api-search
   ports:
   - protocol: TCP
-    port: {{ .Values.microservices.api-search.port }}
-    targetPort: {{ .Values.microservices.api-search.port }}
+    port: {{ .Values.microservices.apiSearch.port }}
+    targetPort: {{ .Values.microservices.apiSearch.port }}

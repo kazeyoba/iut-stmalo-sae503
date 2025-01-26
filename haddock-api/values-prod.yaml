@@ -2,7 +2,7 @@ global:
   environment: production
 
 microservices:
-  api-quotes:
+  apiQuotes:
     image: harbor.kaze-cloud.fr/public/api-quotes:0.4
     replicas: 2
     resources:
@@ -14,7 +14,7 @@ microservices:
         memory: "256Mi"
     path: /quotes
     port: 5000
-  api-search:
+  apiSearch:
     image: harbor.kaze-cloud.fr/public/api-search:0.4
     replicas: 2
     resources:
@@ -26,7 +26,7 @@ microservices:
         memory: "256Mi"
     path: /search
     port: 5000
-  api-users:
+  apiUsers:
     image: harbor.kaze-cloud.fr/public/api-users:0.4
     replicas: 2
     resources:
@@ -43,7 +43,7 @@ redis:
   host: redis
   port: "6379"
   replicas: 1
-  image: bitnami/redis:0.4
+  image: bitnami/redis:latest
   resources:
     requests:
       memory: "256Mi"

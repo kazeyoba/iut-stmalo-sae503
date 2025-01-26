@@ -6,7 +6,7 @@ metadata:
     app: api-users
     environment: {{ .Values.global.environment }}
 spec:
-  replicas: {{ .Values.microservices.api-users.replicas }}
+  replicas: {{ .Values.microservices.apiUsers.replicas }}
   selector:
     matchLabels:
       app: api-users
@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
       - name: api-users
-        image: {{ .Values.microservices.api-users.image }}
+        image: {{ .Values.microservices.apiUsers.image }}
         ports:
-        - containerPort: {{ .Values.microservices.api-users.port }}
+        - containerPort: {{ .Values.microservices.apiUsers.port }}
         env:
         - name: ENVIRONMENT
           value: {{ .Values.global.environment }}
@@ -29,11 +29,11 @@ spec:
         - name: REDIS_PORT
           value: {{ .Values.redis.port }}
         - name: APP_PORT
-          value: {{ .Values.microservices.api-users.port }}
+          value: {{ .Values.microservices.apiUsers.port }}
         resources:
           limits:
-            cpu: {{ .Values.microservices.api-users.resources.limits.cpu }}
-            memory: {{ .Values.microservices.api-users.resources.limits.memory }}
+            cpu: {{ .Values.microservices.apiUsers.resources.limits.cpu }}
+            memory: {{ .Values.microservices.apiUsers.resources.limits.memory }}
           requests:
-            cpu: {{ .Values.microservices.api-users.resources.requests.cpu }}
-            memory: {{ .Values.microservices.api-users.resources.requests.memory }}
+            cpu: {{ .Values.microservices.apiUsers.resources.requests.cpu }}
+            memory: {{ .Values.microservices.apiUsers.resources.requests.memory }}

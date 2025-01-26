@@ -6,7 +6,7 @@ metadata:
     app: api-search
     environment: {{ .Values.global.environment }}
 spec:
-  replicas: {{ .Values.microservices.api-search.replicas }}
+  replicas: {{ .Values.microservices.apiSearch.replicas }}
   selector:
     matchLabels:
       app: api-search
@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
       - name: api-search
-        image: {{ .Values.microservices.api-search.image }}
+        image: {{ .Values.microservices.apiSearch.image }}
         ports:
-        - containerPort: {{ .Values.microservices.api-search.port }}
+        - containerPort: {{ .Values.microservices.apiSearch.port }}
         env:
         - name: ENVIRONMENT
           value: {{ .Values.global.environment }}
@@ -29,11 +29,11 @@ spec:
         - name: REDIS_PORT
           value: {{ .Values.redis.port }}
         - name: APP_PORT
-          value: {{ .Values.microservices.api-search.port }}
+          value: {{ .Values.microservices.apiSearch.port }}
         resources:
           limits:
-            cpu: {{ .Values.microservices.api-search.resources.limits.cpu }}
-            memory: {{ .Values.microservices.api-search.resources.limits.memory }}
+            cpu: {{ .Values.microservices.apiSearch.resources.limits.cpu }}
+            memory: {{ .Values.microservices.apiSearch.resources.limits.memory }}
           requests:
-            cpu: {{ .Values.microservices.api-search.resources.requests.cpu }}
-            memory: {{ .Values.microservices.api-search.resources.requests.memory }}
+            cpu: {{ .Values.microservices.apiSearch.resources.requests.cpu }}
+            memory: {{ .Values.microservices.apiSearch.resources.requests.memory }}

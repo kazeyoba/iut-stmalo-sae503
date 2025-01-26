@@ -10,5 +10,5 @@ spec:
     app: api-quotes
   ports:
   - protocol: TCP
-    port: {{ .Values.microservices.api-quotes.port }}
-    targetPort: {{ .Values.microservices.api-quotes.port }}
+    port: {{ .Values.microservices.apiQuotes.port }}
+    targetPort: {{ .Values.microservices.apiQuotes.port }}
