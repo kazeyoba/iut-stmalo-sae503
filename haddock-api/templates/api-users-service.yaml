@@ -9,6 +9,6 @@ spec:
   selector:
     app: api-users
   ports:
-  - protocol: TCP
-    port: {{ .Values.microservices.api-users.port }}
-    targetPort: {{ .Values.microservices.api-users.port }}
+    - protocol: TCP
+      port: {{ index .Values.microservices.api-users.port }}
+      targetPort: {{ index .Values.microservices.api-users.port }}
