@@ -6,7 +6,7 @@ metadata:
     app: api-quotes
     environment: {{ .Values.global.environment }}
 spec:
-  replicas: {{ .Values.microservices.apiQuotes.replicas }}
+  replicas: {{ .Values.microservices.apiquotes.replicas }}
   selector:
     matchLabels:
       app: api-quotes
@@ -18,9 +18,9 @@ spec:
     spec:
       containers:
       - name: api-quotes
-        image: {{ .Values.microservices.apiQuotes.image }}
+        image: {{ .Values.microservices.apiquotes.image }}
         ports:
-        - containerPort: {{ .Values.microservices.apiQuotes.port }}
+        - containerPort: {{ .Values.microservices.apiquotes.port }}
         env:
         - name: ENVIRONMENT
           value: {{ .Values.global.environment }}
@@ -29,11 +29,11 @@ spec:
         - name: REDIS_PORT
           value: {{ .Values.redis.port }}
         - name: APP_PORT
-          value: {{ .Values.microservices.apiQuotes.port }}
+          value: {{ .Values.microservices.apiquotes.port }}
         resources:
           limits:
-            cpu: {{ .Values.microservices.apiQuotes.resources.limits.cpu }}
-            memory: {{ .Values.microservices.apiQuotes.resources.limits.memory }}
+            cpu: {{ .Values.microservices.apiquotes.resources.limits.cpu }}
+            memory: {{ .Values.microservices.apiquotes.resources.limits.memory }}
           requests:
-            cpu: {{ .Values.microservices.apiQuotes.resources.requests.cpu }}
-            memory: {{ .Values.microservices.apiQuotes.resources.requests.memory }}
+            cpu: {{ .Values.microservices.apiquotes.resources.requests.cpu }}
+            memory: {{ .Values.microservices.apiquotes.resources.requests.memory }}

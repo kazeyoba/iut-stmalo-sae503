@@ -10,5 +10,5 @@ spec:
     app: api-users
   ports:
     - protocol: TCP
-      port: {{ .Values.microservices.apiUsers.port }}
-      targetPort: {{ .Values.microservices.apiUsers.port }}
+      port: {{ .Values.microservices.apiusers.port }}
+      targetPort: {{ .Values.microservices.apiusers.port }}
