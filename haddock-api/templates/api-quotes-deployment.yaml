@@ -23,13 +23,13 @@ spec:
         - containerPort: {{ .Values.microservices.apiquotes.port }}
         env:
         - name: ENVIRONMENT
-          value: {{ .Values.global.environment }}
+          value: "{{ .Values.global.environment }}"
         - name: REDIS_HOST
-          value: {{ .Values.redis.host }}
+          value: "{{ .Values.redis.host }}"
         - name: REDIS_PORT
-          value: {{ .Values.redis.port }}
+          value: "{{ .Values.redis.port }}"
         - name: APP_PORT
-          value: {{ .Values.microservices.apiquotes.port }}
+          value: "{{ .Values.microservices.apiquotes.port }}"
         resources:
           limits:
             cpu: {{ .Values.microservices.apiquotes.resources.limits.cpu }}
