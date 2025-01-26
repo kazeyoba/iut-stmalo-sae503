@@ -3,7 +3,7 @@ global:
 
 microservices:
   apiquotes:
-    image: harbor.kaze-cloud.fr/public/api-quotes:0.4
+    image: "harbor.kaze-cloud.fr/public/api-quotes:0.4"
     replicas: 2
     resources:
       limits:
@@ -15,7 +15,7 @@ microservices:
     path: /quotes
     port: "5000"
   apisearch:
-    image: harbor.kaze-cloud.fr/public/api-search:0.4
+    image: "harbor.kaze-cloud.fr/public/api-search:0.4"
     replicas: 2
     resources:
       limits:
@@ -27,7 +27,7 @@ microservices:
     path: /search
     port: "5000"
   apiusers:
-    image: harbor.kaze-cloud.fr/public/api-users:0.4
+    image: "harbor.kaze-cloud.fr/public/api-users:0.4"
     replicas: 2
     resources:
       limits:
