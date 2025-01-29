@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-ingress
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: haddok-prod-test-ratelimit@kubernetescrd
 spec:
   rules:
   - host: sae503-prod.kaze-cloud.fr
