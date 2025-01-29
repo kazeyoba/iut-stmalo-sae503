@@ -5,4 +5,4 @@ metadata:
 spec:
   rateLimit:
     period: 1m
-    average: 5
+    average: 10
