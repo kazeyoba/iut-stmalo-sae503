@@ -38,3 +38,6 @@ curl -X GET https://sae503-prod.kaze-cloud.fr/quotes -H "Authorization: Basic $(
 helm install haddock-api haddock-api/ -f haddock-api/values-prod.yaml
 ```
 
+```bash
+helm uninstall haddock-api
+```
