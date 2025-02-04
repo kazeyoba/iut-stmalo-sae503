@@ -5,6 +5,7 @@ resources:
 - ../../base/api-search
 - ../../base/api-users
 - ../../base/redis
+- api-middlewares.yaml
 - api-ingress.yaml
 commonLabels:
   environment: development
@@ -13,8 +14,8 @@ images:
   newTag: "0.1"
 - name: harbor.kaze-cloud.fr/public/service-search
   newTag: "0.1"
-- name: harbor.kaze-cloud.fr/public/api-users
-  newTag: "0.1"
+- name: harbor.kaze-cloud.fr/public/service-users
+  newTag: "0.4"
 - name: bitnami/redis:latest
   newTag: "7.4.2"
 patches:

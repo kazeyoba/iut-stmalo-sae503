@@ -94,5 +94,49 @@ def require_auth(f):
         return f(*args, **kwargs)
     return decorated
 
+@app.route('/search/docs', methods=['GET'])
+def get_search_api_docs():
+    """
+    Endpoint pour accéder à la documentation de l'API de recherche
+    ---
+    responses:
+      200:
+        description: Documentation de l'API de recherche en Swagger
+    """
+    return jsonify({
+        "swagger": "2.0",
+        "info": {
+            "title": "Search Quotes API",
+            "description": "API permettant de rechercher des citations par mot-clé.",
+            "version": "1.0.0"
+        },
+        "basePath": "/",
+        "paths": {
+            "/search": {
+                "get": {
+                    "summary": "Rechercher des citations par mot-clé",
+                    "operationId": "searchQuotes",
+                    "parameters": [
+                        {
+                            "name": "keyword",
+                            "in": "query",
+                            "description": "Mot-clé pour rechercher des citations",
+                            "required": True,
+                            "type": "string"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Liste des citations correspondantes"
+                        },
+                        "400": {
+                            "description": "Mot-clé requis"
+                        }
+                    }
+                }
+            }
+        }
+    }), 200
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=APP_PORT)

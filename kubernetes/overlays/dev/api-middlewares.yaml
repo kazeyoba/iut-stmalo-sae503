@@ -1,0 +1,12 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ratelimit-ip-strategy
+spec:
+  rateLimit:
+    average: 10
+    period: 1m
+    burst: 15
+    sourceCriterion:
+      ipStrategy:
+        depth: 3

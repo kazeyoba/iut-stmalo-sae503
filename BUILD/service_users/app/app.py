@@ -122,5 +122,77 @@ def add_user():
     redis_client.sadd("users",f"users:{user_id}")
     return jsonify({"message": "Utilisateur ajouté"}), 201
 
+@app.route('/users/docs', methods=['GET'])
+def get_users_api_docs():
+    """
+    Endpoint pour accéder à la documentation de l'API des utilisateurs
+    ---
+    responses:
+      200:
+        description: Documentation de l'API des utilisateurs en Swagger
+    """
+    return jsonify({
+        "swagger": "2.0",
+        "info": {
+            "title": "Users API",
+            "description": "API permettant de gérer les utilisateurs.",
+            "version": "1.0.0"
+        },
+        "basePath": "/",
+        "paths": {
+            "/users": {
+                "get": {
+                    "summary": "Récupérer la liste des utilisateurs",
+                    "operationId": "getUsers",
+                    "responses": {
+                        "200": {
+                            "description": "Liste des utilisateurs"
+                        },
+                        "401": {
+                            "description": "Unauthorized"
+                        }
+                    }
+                },
+                "post": {
+                    "summary": "Ajouter un utilisateur",
+                    "operationId": "addUser",
+                    "parameters": [
+                        {
+                            "name": "user",
+                            "in": "body",
+                            "description": "Utilisateur à ajouter",
+                            "required": True,
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Utilisateur ajouté"
+                        },
+                        "400": {
+                            "description": "ID et nom sont requis"
+                        },
+                        "401": {
+                            "description": "Unauthorized"
+                        }
+                    }
+                }
+            }
+        }
+    }), 200
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=APP_PORT)

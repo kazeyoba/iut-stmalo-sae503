@@ -140,6 +140,89 @@ def delete_quote(quote_id):
 
     redis_client.hdel(f"quotes:{quote_id}","quote")
     return jsonify({"message": "Citation supprimée"}), 200
+  
+@app.route('/quotes/docs', methods=['GET'])
+def get_api_docs():
+    """
+    Endpoint pour accéder à la documentation de l'API
+    ---
+    responses:
+      200:
+        description: Documentation de l'API en Swagger
+    """
+    return jsonify({
+        "swagger": "2.0",
+        "info": {
+            "title": "Quotes API",
+            "description": "API permettant de gérer des citations.",
+            "version": "1.0.0"
+        },
+        "basePath": "/",
+        "paths": {
+            "/quotes": {
+                "get": {
+                    "summary": "Récupérer toutes les citations",
+                    "operationId": "getQuotes",
+                    "responses": {
+                        "200": {
+                            "description": "Liste des citations"
+                        }
+                    }
+                },
+                "post": {
+                    "summary": "Ajouter une citation",
+                    "operationId": "addQuote",
+                    "parameters": [
+                        {
+                            "name": "quote",
+                            "in": "body",
+                            "description": "Citation à ajouter",
+                            "required": True,
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "user_id": {
+                                        "type": "string"
+                                    },
+                                    "quote": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Citation ajoutée"
+                        }
+                    }
+                }
+            },
+            "/quotes/{quote_id}": {
+                "delete": {
+                    "summary": "Supprimer une citation",
+                    "operationId": "deleteQuote",
+                    "parameters": [
+                        {
+                            "name": "quote_id",
+                            "in": "path",
+                            "description": "ID de la citation à supprimer",
+                            "required": True,
+                            "type": "integer"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Citation supprimée"
+                        },
+                        "404": {
+                            "description": "Citation non trouvée"
+                        }
+                    }
+                }
+            }
+        }
+    }), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=APP_PORT)
