@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: api-ingress
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: haddok-dev-ratelimit-ip-strategy@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: haddok-dev-test-ratelimit@kubernetescrd
 spec:
   rules:
   - host: sae503-prod.kaze-cloud.fr

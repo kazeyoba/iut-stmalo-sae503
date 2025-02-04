@@ -5,7 +5,7 @@ resources:
 - ../../base/api-search
 - ../../base/api-users
 - ../../base/redis
-- api-middlewares.yaml
+- api-middleware.yaml
 - api-ingress.yaml
 commonLabels:
   environment: development
