@@ -6,7 +6,7 @@ services:
       context: ./service_quotes
       dockerfile: Dockerfile
 
-    image: harbor.kaze-cloud.fr/public/service-quotes:0.4
+    image: harbor.kaze-cloud.fr/public/api-quotes:0.4
 
     ports:
       - 5001:5000
@@ -25,7 +25,7 @@ services:
       context: ./service_search
       dockerfile: Dockerfile
 
-    image: harbor.kaze-cloud.fr/public/service-search:0.4
+    image: harbor.kaze-cloud.fr/public/api-search:0.4
 
     ports:
       - 5000:5000

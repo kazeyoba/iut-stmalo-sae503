@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: api-users
-        image: harbor.kaze-cloud.fr/public/api-users:latest
+        image: harbor.kaze-cloud.fr/public/service-users:latest
         env:
         - name: REDIS_HOST
           value: redis

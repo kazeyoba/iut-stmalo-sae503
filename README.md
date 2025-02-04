@@ -31,3 +31,10 @@ curl -X GET http://localhost:5002/users -H "Authorization: Basic $(echo -n 'Alic
 ```bash
 curl -X GET https://sae503-prod.kaze-cloud.fr/quotes -H "Authorization: Basic $(echo -n 'Alice:inWonderland' | base64)"
 ```
+
+## HELM
+
+```bash
+helm install haddock-api haddock-api/ -f haddock-api/values-prod.yaml
+```
+

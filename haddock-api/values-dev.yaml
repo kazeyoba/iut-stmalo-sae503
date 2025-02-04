@@ -1,38 +1,38 @@
 global:
-  environment: developpement
+  environment: production
 
 microservices:
-  api-quotes:
-    image: harbor.kaze-cloud.fr/public/api-quotes:0.1
+  apiquotes:
+    image: "harbor.kaze-cloud.fr/public/service-quotes:0.1"
     replicas: 1
     resources:
       limits:
         cpu: "1"
-        memory: "512Mi"
+        memory: "1024Mi"
       requests:
         cpu: "500m"
         memory: "256Mi"
     path: /quotes
     port: "5000"
-  api-search:
-    image: harbor.kaze-cloud.fr/public/api-search:0.1
+  apisearch:
+    image: "harbor.kaze-cloud.fr/public/service-search:0.1"
     replicas: 1
     resources:
       limits:
         cpu: "1"
-        memory: "512Mi"
+        memory: "1024Mi"
       requests:
         cpu: "500m"
         memory: "256Mi"
     path: /search
     port: "5000"
-  api-users:
-    image: harbor.kaze-cloud.fr/public/api-users:0.1
+  apiusers:
+    image: "harbor.kaze-cloud.fr/public/service-users:0.1"
     replicas: 1
     resources:
       limits:
         cpu: "1"
-        memory: "512Mi"
+        memory: "1024Mi"
       requests:
         cpu: "500m"
         memory: "256Mi"
@@ -40,22 +40,22 @@ microservices:
     port: "5000"
 
 redis:
-  host: redis
+  host: "redis"
   port: "6379"
   replicas: 1
-  image: bitnami/redis:0.1
+  image: bitnami/redis:latest
   resources:
     requests:
       memory: "256Mi"
       cpu: "250m"
     limits:
-      memory: "512Mi"
+      memory: "1024Mi"
       cpu: "500m"
   service:
     type: ClusterIP
   pvc:
     accessMode: ReadWriteOnce
-    storage: 1Gi
+    storage: 5Gi
 
 ingress:
   enabled: true
