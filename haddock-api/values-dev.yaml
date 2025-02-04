@@ -59,4 +59,4 @@ redis:
 
 ingress:
   enabled: true
-  host: sae503-prod.kaze-cloud.fr
+  host: sae503-helm.kaze-cloud.fr
