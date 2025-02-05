@@ -10,6 +10,6 @@ spec:
       kind: Rule
       services:
         - name: api-quotes
-          port: 
+          port: 5000
       middlewares:
         - name: ratelimit
