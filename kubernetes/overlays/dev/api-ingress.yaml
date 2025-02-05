@@ -6,10 +6,24 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`sae503-dev.kaze-cloud.fr`)
+    - match: Host(`sae503-dev.kaze-cloud.fr`) && PathPrefix(`/quotes`)
       kind: Rule
       services:
         - name: api-quotes
+          port: 5000
+      middlewares:
+        - name: ratelimit
+    - match: Host(`sae503-dev.kaze-cloud.fr`) && PathPrefix(`/users`)
+      kind: Rule
+      services:
+        - name: api-users
+          port: 5000
+      middlewares:
+        - name: ratelimit
+    - match: Host(`sae503-dev.kaze-cloud.fr`) && PathPrefix(`/search`)
+      kind: Rule
+      services:
+        - name: api-search
           port: 5000
       middlewares:
         - name: ratelimit
