@@ -4,5 +4,5 @@ metadata:
   name: test-ratelimit
 spec:
   rateLimit:
-    average: 30
-    burst: 50
+    average: 1m
+    burst: 10
