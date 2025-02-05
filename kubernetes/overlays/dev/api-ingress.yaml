@@ -1,32 +1,15 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
 metadata:
   name: api-ingress
-  annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: test-ratelimit@kubernetescrd
 spec:
-  rules:
-  - host: sae503-dev.kaze-cloud.fr
-    http:
-      paths:
-      - path: /users
-        pathType: Prefix
-        backend:
-          service:
-            name: api-users
-            port:
-              number: 5000
-      - path: /search
-        pathType: Prefix
-        backend:
-          service:
-            name: api-search
-            port:
-              number: 5000
-      - path: /quotes
-        pathType: Prefix
-        backend:
-          service:
-            name: api-quotes
-            port:
-              number: 5000
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`sae503-dev.kaze-cloud.fr`)
+      kind: Rule
+      services:
+        - name: api-quotes
+          port: 5000
+      middlewares:
+        - name: ratelimit
